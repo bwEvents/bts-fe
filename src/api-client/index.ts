@@ -93,8 +93,9 @@ class ApiClient {
     return this.httpClient.request<EventType[]>(apiUrls.events.get);
   }
 
-  public async getMsDynamicEvents(): Promise<EventType[]> {
-    return this.httpClient.request<EventType[]>(apiUrls.msdynamicEvents.get);
+  public async getMsDynamicEvents(eventId: string): Promise<EventType[]> {
+    const url = `${apiUrls.msdynamicEvents.get}?eventId=${eventId}`;
+    return this.httpClient.request<EventType[]>(url);
   }
 
   public async getAllEvents(): Promise<EventType[]> {

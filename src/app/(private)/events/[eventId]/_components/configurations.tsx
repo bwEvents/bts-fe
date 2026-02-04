@@ -35,8 +35,8 @@ export const Configurations = () => {
   );
 
   const msEventsQuery = useQuery<Array<{ id: string; name: string }>>({
-    queryKey: ["ms-events"],
-    queryFn: () => apiClient.getMsDynamicEvents(),
+    queryKey: ["ms-events", selectedEvent!.id],
+    queryFn: () => apiClient.getMsDynamicEvents(selectedEvent!.id),
   });
 
   const msEvents = msEventsQuery.data ?? [];
