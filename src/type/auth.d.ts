@@ -8,6 +8,7 @@ export type AuthUser = {
   access_token: string;
   expires_at: number;
   expired: boolean;
+  email: string;
 };
 
 export type TLogin = {

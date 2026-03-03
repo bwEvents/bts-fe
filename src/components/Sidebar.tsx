@@ -3,7 +3,11 @@
 import useNavItems from "@/hooks/useNavItems";
 import { useUser } from "@/hooks/useUser";
 import classNames from "clsx";
-import { ChevronLeftCircleIcon, ChevronRightCircleIcon } from "lucide-react";
+import {
+  ChevronLeftCircleIcon,
+  ChevronRightCircleIcon,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavItem, defaultNavItems } from "./defaultNavItems";
@@ -24,15 +28,14 @@ const Sidebar = ({
   const pathname = usePathname();
   const navigations = useNavItems();
 
-  const { removeUser } = useUser();
+  const { removeUser, user } = useUser();
 
   const Icon = collapsed ? ChevronRightCircleIcon : ChevronLeftCircleIcon;
 
   return (
     <div
       className={classNames({
-        "bg-indigo-700 text-zinc-50 fixed md:static md:translate-x-0 z-20":
-          true,
+        "bg-indigo-700 text-zinc-50 fixed md:static md:translate-x-0 z-20": true,
         "transition-all duration-300 ease-in-out": true,
         "w-[300px]": !collapsed,
         "w-16": collapsed,
@@ -41,15 +44,13 @@ const Sidebar = ({
     >
       <div
         className={classNames({
-          "flex flex-col justify-between h-screen md:h-full sticky inset-0":
-            true,
+          "flex flex-col justify-between h-screen md:h-full sticky inset-0": true,
         })}
       >
         {/* logo and collapse button */}
         <div
           className={classNames({
-            "flex items-center border-b border-b-indigo-800 transition-none":
-              true,
+            "flex items-center border-b border-b-indigo-800 transition-none": true,
             "p-4 justify-between": !collapsed,
             "py-4 justify-center": collapsed,
           })}
@@ -104,19 +105,11 @@ const Sidebar = ({
           })}
         >
           <div className="flex gap-4 items-center h-11 overflow-hidden">
-            <img
-              src={
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              }
-              height={36}
-              width={36}
-              alt="profile image"
-              className="rounded-full"
-            />
+            <User className="bg-indigo-500 text-white rounded-full size-9 p-2" />
 
             {!collapsed && (
               <div className="flex flex-col ">
-                <span className="text-indigo-50 my-0">John Doe</span>
+                <span className="text-indigo-50 my-0">{user?.email}</span>
                 <Link
                   href="/"
                   className="text-indigo-200 text-sm"

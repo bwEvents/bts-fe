@@ -16,6 +16,7 @@ export default class HttpClient {
       access_token: "",
       expires_at: 0,
       expired: true,
+      email: "",
     };
   }
 
@@ -23,7 +24,7 @@ export default class HttpClient {
     endpoint: string,
     method: string = "GET",
     headers: Record<string, string> = {},
-    body: any = null
+    body: any = null,
   ): Promise<T> {
     // const token = this.getBearerToken();
 
@@ -68,7 +69,7 @@ export default class HttpClient {
     endpoint: string,
     method: string = "GET",
     headers: Record<string, string> = {},
-    body: any = null
+    body: any = null,
   ): Promise<T> {
     const { access_token: token } = this.getUserInfo();
 
@@ -98,7 +99,7 @@ export default class HttpClient {
     endpoint: string,
     method: string = "GET",
     headers: Record<string, string> = {},
-    body: any = null
+    body: any = null,
   ): Promise<T> {
     const defaultHeaders: Record<string, string> = {
       "Content-Type": "application/json",
@@ -130,7 +131,7 @@ export default class HttpClient {
   public async downloadRequest(
     endpoint: string,
     method: string = "GET",
-    headers: Record<string, string> = {}
+    headers: Record<string, string> = {},
   ): Promise<void> {
     const { access_token: token } = this.getUserInfo();
 
